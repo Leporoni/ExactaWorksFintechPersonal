@@ -2,14 +2,13 @@ package br.com.exactaworks.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -28,11 +27,11 @@ public class Gasto implements Serializable {
 	@Column(length = 100)
 	private String descricao;
 
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
-	@NotNull(message = "Date is a required information.")
-	private Date dataHora;
+	
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	private LocalDate dataHora;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 50)
 	private BigDecimal valor;
 
 	@Column(length = 150)
@@ -42,7 +41,7 @@ public class Gasto implements Serializable {
 
 	}
 
-	public Gasto(Long idGasto, String nomePessoa, String descricao, Date dataHora, BigDecimal valor, String tags) {
+	public Gasto(Long idGasto, String nomePessoa, String descricao, LocalDate dataHora, BigDecimal valor, String tags) {
 		this.idGasto = idGasto;
 		this.nomePessoa = nomePessoa;
 		this.descricao = descricao;
@@ -75,11 +74,11 @@ public class Gasto implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public Date getDataHora() {
+	public LocalDate getDataHora() {
 		return dataHora;
 	}
 
-	public void setDataHora(Date dataHora) {
+	public void setDataHora(LocalDate dataHora) {
 		this.dataHora = dataHora;
 	}
 
