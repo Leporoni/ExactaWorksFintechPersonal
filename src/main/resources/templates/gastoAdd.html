@@ -73,7 +73,7 @@
 								th:classappend="${#fields.hasErrors('tags')}? 'has-error'">
 								<label>Tags</label>
 								<textarea class="form-control input-sm" th:field="*{tags}"
-									cols="5" rows="5" placeholder="Tag"></textarea>
+									cols="5" rows="5" placeholder="Tag" maxlength="150"></textarea>
 							</div>
 						</div>
 					</fieldset>

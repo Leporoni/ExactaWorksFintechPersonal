@@ -1,19 +1,21 @@
 package br.com.exactaworks.controller;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.exactaworks.model.Gasto;
 import br.com.exactaworks.service.GastoService;
 
-@Controller
+@RestController
 public class GastoController {
 
 	@Autowired
@@ -21,7 +23,6 @@ public class GastoController {
 
 	@GetMapping("/")
 	public ModelAndView findAll() {
-
 		ModelAndView mv = new ModelAndView("/gasto");
 		mv.addObject("gastos", service.findAll());
 
@@ -29,17 +30,15 @@ public class GastoController {
 	}
 
 	@GetMapping("/add")
-	public ModelAndView add(Gasto gasto) {
-
+	public ModelAndView add(Optional<Gasto> optional) {
 		ModelAndView mv = new ModelAndView("/gastoAdd");
-		mv.addObject("gasto", gasto);
+		mv.addObject("gasto", optional);
 
 		return mv;
 	}
 
 	@PostMapping("/save")
 	public ModelAndView save(@Valid Gasto gasto, BindingResult result) {
-
 		if (result.hasErrors()) {
 			return add(gasto);
 		}
@@ -51,18 +50,18 @@ public class GastoController {
 
 	@GetMapping("/edit/{id}")
 	public ModelAndView edit(@PathVariable("id") Long id) {
-
-		ModelAndView mv = new ModelAndView("/Add");
-		service.findOne(id);
-		return mv;
+		return add(service.findOne(id));
 	}
 
 	@GetMapping("/delete/{id}")
 	public ModelAndView delete(@PathVariable("id") Long id) {
-
 		service.delete(id);
-
 		return findAll();
+	}
+
+	public ModelAndView add(Gasto gasto) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
