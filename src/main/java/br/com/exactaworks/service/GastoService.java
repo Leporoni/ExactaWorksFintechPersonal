@@ -16,18 +16,22 @@ public class GastoService {
 	private GastoRepository repository;
 
 	public List<Gasto> findAll() {
+		
 		return repository.findAll();
 	}
 
 	public Optional<Gasto> findOne(Long id) {
+		
 		return repository.findById(id);
 	}
 
 	public Gasto save(Gasto gasto) {
+		
 		return repository.saveAndFlush(gasto);
 	}
 
 	public void delete(Long id) {
+		
 		repository.deleteById(id);
 	}
 

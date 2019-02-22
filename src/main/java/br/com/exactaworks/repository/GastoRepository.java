@@ -6,4 +6,6 @@ import br.com.exactaworks.model.Gasto;
 
 public interface GastoRepository extends JpaRepository<Gasto, Long > {
 
+	void deleteById(Long id);
+
 }

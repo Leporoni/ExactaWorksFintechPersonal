@@ -23,6 +23,7 @@ public class GastoController {
 
 	@GetMapping("/")
 	public ModelAndView findAll() {
+		
 		ModelAndView mv = new ModelAndView("/gasto");
 		mv.addObject("gastos", service.findAll());
 
@@ -31,6 +32,7 @@ public class GastoController {
 
 	@GetMapping("/add")
 	public ModelAndView add(Optional<Gasto> optional) {
+		
 		ModelAndView mv = new ModelAndView("/gastoAdd");
 		mv.addObject("gasto", optional);
 
@@ -39,6 +41,7 @@ public class GastoController {
 
 	@PostMapping("/save")
 	public ModelAndView save(@Valid Gasto gasto, BindingResult result) {
+		
 		if (result.hasErrors()) {
 			return add(gasto);
 		}
@@ -50,12 +53,15 @@ public class GastoController {
 
 	@GetMapping("/edit/{id}")
 	public ModelAndView edit(@PathVariable("id") Long id) {
+		
 		return add(service.findOne(id));
 	}
 
 	@GetMapping("/delete/{id}")
 	public ModelAndView delete(@PathVariable("id") Long id) {
+		
 		service.delete(id);
+		
 		return findAll();
 	}
 
