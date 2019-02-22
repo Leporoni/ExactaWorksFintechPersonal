@@ -66,7 +66,7 @@ public class GastoController {
 	}
 
 	public ModelAndView add(Gasto gasto) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

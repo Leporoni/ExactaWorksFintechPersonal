@@ -34,8 +34,7 @@ public class Gasto implements Serializable {
 	private String tags;
 
 	public Gasto() {
-		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public Gasto(Long idGasto, String nomePessoa, String descricao, Date dataHora, BigDecimal valor, String tags) {
